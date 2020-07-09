@@ -1,5 +1,7 @@
 #!/bin/sh 
 
+git submodule init
+git submodule update
 cd ~
 [ -f .bashrc ] && mv .bashrc .bashrc.ini
 [ -f .bash_logout ] && mv .bash_logout .bash_logout.ini
