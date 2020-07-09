@@ -1,0 +1,122 @@
+"xkill"
+   Mod4 + x
+
+"mpv --fs --ytdl-format="""""ytdl-format=bestvideo[height<=?1080][fps<=?30][vcodec!=?vp9]+bestaudio/best""""" `xclip -o`"
+   Mod4 + p
+
+"autoshow"
+   Mod4 + q
+
+"vpn"
+   Mod4 + v
+
+"LC_CTYPE=en_US.UTF-8 st mc"
+   Mod4 + e
+
+# Hotkeys
+#########
+# Increase volume
+"amixer set Master 5%+"
+   XF86AudioRaiseVolume
+# Decrease volume
+"amixer set Master 5%-"
+   XF86AudioLowerVolume
+# Mute volume
+"amixer set Master toggle"
+   XF86AudioMute
+#Increase backlight
+"xbacklight +10"
+   XF86MonBrightnessUp
+#Decrease backlight
+"xbacklight -10"
+   XF86MonBrightnessDown
+
+# dmenu
+#######
+"srv=$(echo """""sanger\ngilda\nelise""""" | dmenu -i -p 'Server?'); st -t $srv -e ssh $srv"
+	Mod4 + s
+
+"p=$(echo """""sanger\nbenoit\nmireille""""" | dmenu -i -p 'Profile?'); firefox -P $p"
+	Mod4 + w
+
+"area=$(echo """""Screen\nWindow\nSelection""""" | dmenu -i -p 'Region?'); case $area in Screen) opt='';; Window) opt='-s -b';; Selection) opt='-s';; esac; scrot $opt ~/Pictures/screenshots/screenshots/%Y-%m-%d_%T.png"
+	Mod4 + Print
+
+"scrot $opt $HOME/Pictures/screenshots/%Y-%m-%d_%T.png"
+	Print
+
+"cfg=$(echo """""xbindkeysrc\ntmux.conf\nst\ndwm""""" | dmenu -i -p 'Config?'); case $cfg in tmux.conf)st -e vi $HOME/.$cfg; tmux source-file $HOME/.tmux.conf;; xbindkeysrc)st -e vi $HOME/.$cfg; xbindkeys -p;; st|dwm)cd ~/repo/$cfg; st -e vi config.h; make clean install;; esac"
+	Mod4 + c
+
+# NEED MORE WORK
+################
+#"sudo -A echo mem > /sys/power/state"
+#   Mod4 + z
+
+# For the benefit of emacs users: -*- shell-script -*-
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 1.8.6
+#
+# If you edit this file, do not forget to uncomment any lines
+# that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# To specify a key, you can use 'xbindkeys --key' or
+# 'xbindkeys --multikey' and put one of the two lines in this file.
+#
+# The format of a command line is:
+#    "command to start"
+#       associated key
+#
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifier:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+#
+
+# The release modifier is not a standard X modifier, but you can
+# use it if you want to catch release events instead of press events
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+# Examples of commands:
+
+# set directly keycode (here control + f with my keyboard)
+#"xterm"
+#  c:41 + m:0x4
+
+# specify a mouse button
+#"xterm"
+#  control + b:2
+
+#"xterm -geom 50x20+20+20"
+#  Shift+Mod2+alt + s
+#
+## set directly keycode (here control+alt+mod2 + f with my keyboard)
+#"xterm"
+#  alt + c:0x29 + m:4 + mod2
+#
+## Control+Shift+a  release event starts rxvt
+#"rxvt"
+#  release+control+shift + a
+#
+## Control + mouse button 2 release event starts rxvt
+#"rxvt"
+#  Control + b:2 + Release
+
+##################################
+# End of xbindkeys configuration #
+################################

@@ -1,0 +1,6 @@
+XTerm*loginShell:true
+XTerm*background: #444444
+XTerm*foreground: white
+XTerm*faceName: monospace:pixelsize=20
+
+Sxiv.background: #1E2541
