@@ -189,22 +189,6 @@ export -f pdfextract
 
 #-------------------------------------------------------------
 
-mi() { 
-   mediainfo --Inform="General;%FileName% (%Duration/String%) %FileSize/String1% \[%OverallBitRate/String%\]" "$@"
-   mediainfo --Inform="Video;%Width%x%Height%" "$@"; 
-}
-export -f mi
-miv() { 
-   mediainfo --Inform="Video;%Width%x%Height%\n" "$@"; 
-}
-export -f miv
-mig() { 
-   mediainfo --Inform="General;%FileName% (%Duration/String%) %FileSize/String1% \[%OverallBitRate/String%\]\n" "$@"
-}
-export -f mig
-
-#-------------------------------------------------------------
-
 if [ -f $HOME/.bash_functions-local ]; then
          . $HOME/.bash_functions-local
 fi
