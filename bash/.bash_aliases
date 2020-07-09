@@ -48,9 +48,9 @@ alias duds4='du -chd 4 | sort -h'
 # The 'ls' family
 #-------------------------------------------------------------
 
-alias l="ls -F"
-alias ll="l -lhi"
-alias lll="ll -a"
+alias ll="l -alFi"
+alias la="ll -A"
+alias l="ls -CF"
 
 alias la='ls -Al'          # show hidden files
 alias ld='ls -d */'        # show directories
