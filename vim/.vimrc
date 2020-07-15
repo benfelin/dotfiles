@@ -5,7 +5,7 @@
 set shortmess+=I
 
 " Line number
-set nu
+set number relativenumber
 
 " Sets how many lines of history VIM has to remember
 set history=1000
@@ -13,8 +13,9 @@ set history=1000
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" for tig
-set autochdir
+" cursor
+set cursorline
+set cursorcolumn
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Completion
@@ -56,7 +57,7 @@ set smartcase
 set hlsearch "Highlight search things
 
 set incsearch "Make search act like search in modern browsers
-set nolazyredraw "Don't redraw while executing macros 
+set nolazyredraw "Don't redraw while executing macros
 
 set magic "Set magic on, for regular expressions
 
@@ -70,8 +71,6 @@ set t_vb=
 
 set tm=1501 "The time in milliseconds that is waited for a key code or mapped key
             "sequence to complete.
-
-"set tags+=~/dev/tags,/corebio/scratch/bf5/software/pubseq/tags
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -121,14 +120,8 @@ endif
 "colorscheme apprentice
 colorscheme Monokai
 
-" Syntax coloring for YAML 
+" Syntax coloring for YAML
 au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Perl-support
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"let g:Perl_Perl = '/software/pubseq/perl/perl'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Buffer menu
@@ -141,7 +134,6 @@ nnoremap <leader>l :ls<CR>:b<space>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if &diff
-"        colorscheme apprentice
         colorscheme Monokai
 endif
 
@@ -170,12 +162,10 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'vimoutliner/vimoutliner'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ying17zi/vim-live-latex-preview'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 Plugin 'perl-support.vim'
 Plugin 'bash-support.vim'
-Plugin 'latex-support.vim'
 Plugin 'c.vim'
 Plugin 'tagbar'
 Plugin 'CycleColor'
@@ -207,76 +197,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" R
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" sample settings for vim-r-plugin and screen.vim
-" Installation 
-"       - Place plugin file under ~/.vim/
-"       - To activate help, type in vim :helptags ~/.vim/doc
-"       - Place the following vim conf lines in .vimrc
-" Usage
-"       - Read intro/help in vim with :h vim-r-plugin or :h screen.txt
-"       - To initialize vim/R session, start screen/tmux, open some *.R file in vim and then hit F2 key
-"       - Object/omni completion command CTRL-X CTRL-O
-"       - To update object list for omni completion, run :RUpdateObjList
-" My favorite Vim/R window arrangement 
-"	tmux attach
-"	Open *.R file in Vim and hit F2 to open R
-"	Go to R pane and create another pane with C-a %
-"	Open second R session in new pane
-"	Go to vim pane and open a new viewport with :split *.R
-" Useful tmux commands
-"       tmux new -s <myname>       start new session with a specific name
-"	tmux ls (C-a-s)            list tmux session
-"       tmux attach -t <id>        attach to specific session  
-"       tmux kill-session -t <id>  kill specific session
-" 	C-a-: kill-session         kill a session
-" 	C-a %                      split pane vertically
-"       C-a "                      split pane horizontally
-" 	C-a-o                      jump cursor to next pane
-"	C-a C-o                    swap panes
-" 	C-a-: resize-pane -L 10    resizes pane by 10 to left (L R U D)
-" Corresponding Vim commands
-" 	:split or :vsplit      split viewport
-" 	C-w-w                  jump cursor to next pane-
-" 	C-w-r                  swap viewports
-" 	C-w C-++               resize viewports to equal split
-" 	C-w 10+                increase size of current pane by value
-
-" To open R in terminal rather than RGui (only necessary on OS X)
-" let vimrplugin_applescript = 0
-" let vimrplugin_screenplugin = 0
-" For tmux support
-"let g:ScreenImpl = 'Tmux'
-"let vimrplugin_screenvsplit = 1 " For vertical tmux split
-"let g:ScreenShellInitialFocus = 'shell' 
-" instruct to use your own .screenrc file
-"let g:vimrplugin_noscreenrc = 1
-" For integration of r-plugin with screen.vim
-"let g:vimrplugin_screenplugin = 1
-" Don't use conque shell if installed
-"let vimrplugin_conqueplugin = 0
-" map the letter 'r' to send visually selected lines to R 
-"let g:vimrplugin_map_r = 1
-" see R documentation in a Vim buffer
-"let vimrplugin_vimpager = "no"
-" vim-latex-live-preview settings
-"autocmd Filetype tex setl updatetime=1
-"let g:livepreview_previewer = "mupdf"
-"let g:livepreview_engine = 'pdflatex'
-"set expandtab
-"set shiftwidth=4
-"set tabstop=8
-" start R with F2 key
-"map <F2> <Plug>RStart 
-"imap <F2> <Plug>RStart
-"vmap <F2> <Plug>RStart
-" send selection to R with space bar
-"vmap <Space> <Plug>RDSendSelection 
-" send line to R with space bar
-"nmap <Space> <Plug>RDSendLine
-"nmap <F8> :TagbarToggle<CR>
+nmap <F8> :TagbarToggle<CR>
 nmap <F10> :NERDTreeToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -285,3 +206,32 @@ nmap <F10> :NERDTreeToggle<CR>
 set laststatus=2
 let g:airline_theme='molokai'
 let g:airline#extensions#tabline#enabled = 1
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
