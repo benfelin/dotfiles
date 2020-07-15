@@ -10,4 +10,4 @@ Required packages:
 
 - [GNU Stow](https://www.gnu.org/software/stow/manual/stow.html)
 - [Perltidy](http://perltidy.sourceforge.net/perltidy.html)
-- [Perlcritic](http://perltidy.sourceforge.net/perltidy.html)
+- [Perlcritic](https://metacpan.org/pod/perlcritic)
