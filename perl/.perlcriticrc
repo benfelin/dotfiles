@@ -1,12 +1,15 @@
 severity  = 3
-verbose   = 5
-top       = 50
 
-# only      = 1
-# force     = 0
-# color     = 1
-# criticism-fatal = 1
+verbose   = %f: [%p] %m at line %l, column %c (Severity %s).\n%d\n
 
-# theme     = (pbp || security) && bugs             #A theme expression
-# include   = NamingConventions ClassHierarchies    #Space-delimited list
-# exclude   = Variables  Modules::RequirePackage    #Space-delimited list
+color                  = 1
+color-severity-highest = bold white on_red
+color-severity-high    = bold white on_yellow
+color-severity-medium  = bold yellow
+color-severity-low     = bold cyan
+
+# => disabled 5
+# => disabled 4
+# => disabled 3
+# => disabled 2
+# => disabled 1
