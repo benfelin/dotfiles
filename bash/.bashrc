@@ -25,7 +25,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -56,18 +56,26 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ -f ~/.config/git/git-prompt.sh ]; then
-    . ~/.config/git/git-prompt.sh
+# Git things
+if [ -f /usr/share/bash-completion/completions/git ]; then
+    . /usr/share/bash-completion/completions/git
 fi
+
+if [ -f /etc/bash_completion.d/git-prompt ]; then
+    . /etc/bash_completion.d/git-prompt
+fi
+
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
 
 if [ "$color_prompt" = yes ]; then
+   #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[0;33m\]$(__git_ps1 " (%s)")\[\033[00m\]\n\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1" (%s)")\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\n\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -92,13 +100,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -109,9 +110,6 @@ if [ -f ~/.bash_aliases ]; then
 fi
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
-fi
-if [ -f ~/.config/git/git-completion.bash ]; then
-    . ~/.config/git/git-completion.bash
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -125,5 +123,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# vim capable
 set -o vi
-export EDITOR=vi
+EDITOR=vi
+VISUAL=vi
