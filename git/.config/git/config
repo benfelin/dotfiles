@@ -155,3 +155,6 @@
 ;;:;;;;;;;;;
 [status]
 	submoduleSummary = true
+
+[init]
+	templatedir = /home/ben/.config/git/hooks

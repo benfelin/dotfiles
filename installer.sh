@@ -1,19 +1,24 @@
-#!/bin/sh 
+#!/bin/sh
+
+command -v stow >/dev/null 2>&1 || { echo "Install GNU Stow first"; exit 1; }
 
 git submodule init
 git submodule update
 
-cd $HOME
-[ -f .bashrc ] && mv .bashrc .bashrc.ini
-[ -f .bash_logout ] && mv .bash_logout .bash_logout.ini
-[ -f .profile ] && mv .profile .profile.ini
-cd -
-
+test -f $HOME/.bashrc && mv $HOME/.bashrc $HOME/.bashrc.ini
+test -f $HOME/.bash_aliases && mv $HOME/.bash_aliases $HOME/.bash_aliases.ini
+test -f $HOME/.bash_functions && mv $HOME/.bash_functions $HOME/.bash_functions.ini
+test -f $HOME/.profile && mv $HOME/.profile $HOME/.profile.ini
+test -f $HOME/.bash_logout && mv $HOME/.bash_logout $HOME/.bash_logout.ini
 stow bash
-stow tmux
+
 stow git
-stow X
+
+stow perl
+
+[ -f $HOME/.tmux.conf ] && mv $HOME/.tmux.conf $HOME/.tmux.conf.ini
+stow tmux
 
 stow vim
 vim +BundleInstall +qall
-ln -s $HOME/.vim/bundle/vim-colorschemes/colors $HOME/.vim/colors 
+test -d $HOME/.vim/colors || ln -s $HOME/.vim/bundle/vim-colorschemes/colors $HOME/.vim/colors

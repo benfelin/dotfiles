@@ -1,0 +1,20 @@
+#!/usr/bin/sh
+files_commit=$(git diff --cached --name-only)
+
+for file in $files_commit; do
+    if [[ $file =~ pm|pl$ ]]
+    then
+        #run perlcritic first so that we avoid unnecessary tidying
+        if ! [[ "$(perlcritic $file)" =~ 'source OK'  ]]; then
+            echo >&2 "There was some error when running perlcritic on $file: $(perlcritic $file)"
+            exit 1
+        fi
+
+        if [[ "$(perltidy -b -bext='/bk' $file)" -gt 0 ]]; then
+         echo >&2 "There was an error when running perltidy on $file; please see the error file for more info"
+           exit 1
+       fi
+    fi
+done
+
+git add $files_commit
