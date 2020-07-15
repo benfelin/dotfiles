@@ -157,4 +157,4 @@
 	submoduleSummary = true
 
 [init]
-	templatedir = /home/ben/.config/git/hooks
+	templatedir = /home/ben/.config/git/templates
