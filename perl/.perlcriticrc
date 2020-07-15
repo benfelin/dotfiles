@@ -1,0 +1,12 @@
+severity  = 3
+verbose   = 5
+top       = 50
+
+# only      = 1
+# force     = 0
+# color     = 1
+# criticism-fatal = 1
+
+# theme     = (pbp || security) && bugs             #A theme expression
+# include   = NamingConventions ClassHierarchies    #Space-delimited list
+# exclude   = Variables  Modules::RequirePackage    #Space-delimited list

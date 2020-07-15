@@ -1,0 +1,24 @@
+my $skip;
+
+BEGIN { $skip = '^(?:Moose|Eval::Closure|Class::MOP|DBI|DBD)' }
+
+print STDERR <<"END";
+
+Reading ~/.perldb options.
+
+Debugger skipping: /$skip/
+
+END
+
+use DB::Skip pkgs => [ qr/$skip/ ];
+
+sub DB::afterinit {
+        #no warnings 'once';
+        # give me a window of lines instead of a single line
+        #push @DB::typeahead => "{{v" unless $DB::already_curly_curly_v++;
+        push @$DB::pretype, 'v'
+}
+
+$DB::deep=1000;
+parse_options("windowSize=25");
+#parse_options("NonStop=1 LineInfo=db.out AutoTrace=1 frame=4 inhibit_exit=1 DumpPackages=1");
