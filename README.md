@@ -66,3 +66,11 @@ access to them. If the user hasn't called xrdb to set the property, then
 [More X configuration](https://tldp.org/HOWTO/XWindow-User-HOWTO/moreconfig.html)
 [Forum](https://superuser.com/questions/243914/what-is-the-difference-between-xresources-and-xdefaults#243916)
 
+# Resetting default Tmux key bindings?
+
+With multiple sessions and servers (-L option) it is possible to bork
+keybindings beyond repair.
+
+[github](https://github.com/tmux/tmux/issues/729)
+[Forum](https://unix.stackexchange.com/questions/57641/reload-of-tmux-config-not-unbinding-keys-bind-key-is-cumulative/255343#255343)
+[tmux.reset.conf]
