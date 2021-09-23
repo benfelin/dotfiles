@@ -1,19 +1,29 @@
 #/bin/sh
 
-xrdb $HOME/.Xdefaults &
-xbindkeys &
-xscreensaver -no-splash &
-tmux new-session -d -s BASE &
-xsetroot -solid gray44 &
-slstatus &
+# TODO laptop/desktop? Linux/OpenBSD/FreeBSD? -> uname
+# battery status
+#while true
+#do
+#    if ([ $BATT -le 5 ] && [ $STATUS == 'Discharging' ]); then
+#        xbacklight -set 0 && sleep1
+#        xbacklight -set 100
+#    fi
+#    sleep 10s
+#done &
+# $HOME/.local/bin/battery-status.sh &
 
-while true
-do
-    if ([ $BATT -le 5 ] && [ $STATUS == 'Discharging' ]); then
-        xbacklight -set 0 && sleep1
-        xbacklight -set 100
-    fi
-    sleep 10s
+# Statusbar loop
+while true; do
+   xsetroot -name "$( date +"%c" )"
+   sleep 1m    # Update time every minute
 done &
+
+xrdb $HOME/.Xdefaults &
+xscreensaver -no-splash &
+xsetroot -solid gray44 &
+
+sxhkd &
+$HOME/.local/bin/mutx &
+compton --backend glx --paint-on-overlay --refresh-rate 60 --glx-no-stencil --glx-no-rebind-pixmap --glx-swap-method -1 &
 
 exec dwm
