@@ -23,4 +23,9 @@ stow vim
 vim +BundleInstall +qall
 test -d $HOME/.vim/colors || ln -s $HOME/.vim/bundle/vim-colorschemes/colors $HOME/.vim/colors
 
+test ! -h $HOME/.xinitrc && mv $HOME/.xinitrc $HOME/.xinitrc.ini
+test ! -h $HOME/.xsession && mv $HOME/.xsession $HOME/.xsession.ini
+test ! -h $HOME/.xprofile && mv $HOME/.xprofile $HOME/.xprofile.ini
+test ! -h $HOME/.Xdefaults && mv $HOME/.Xdefaults $HOME/.Xdefaults.ini
+test ! -h $HOME/.Xresources && mv $HOME/.Xresources $HOME/.Xresources.ini
 stow X
