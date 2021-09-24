@@ -57,25 +57,25 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Git things
-if [ -f /usr/share/bash-completion/completions/git ]; then
-    . /usr/share/bash-completion/completions/git
-fi
-
-if [ -f /etc/bash_completion.d/git-prompt ]; then
-    . /etc/bash_completion.d/git-prompt
-fi
-
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWUPSTREAM="auto"
+# if [ -f /usr/share/bash-completion/completions/git ]; then
+#     . /usr/share/bash-completion/completions/git
+# fi
+# 
+# if [ -f /etc/bash_completion.d/git-prompt ]; then
+#     . /etc/bash_completion.d/git-prompt
+# fi
+# 
+# GIT_PS1_SHOWDIRTYSTATE=1
+# GIT_PS1_SHOWSTASHSTATE=1
+# GIT_PS1_SHOWUNTRACKEDFILES=1
+# GIT_PS1_SHOWUPSTREAM="auto"
 
 if [ "$color_prompt" = yes ]; then
-   #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[0;33m\]$(__git_ps1 " (%s)")\[\033[00m\]\n\$ '
+   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[0;33m\]$(__git_ps1 " (%s)")\[\033[00m\]\n\$ '
 else
-    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\n\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\n\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -138,8 +138,14 @@ PERL_MM_OPT="INSTALL_BASE=/home/ben/perl5"; export PERL_MM_OPT;
 if [ -z "$XDG_RUNTIME_DIR" ]; then
     export XDG_RUNTIME_DIR=/tmp
     if [ ! -d  "$XDG_RUNTIME_DIR" ]; then
-     mkdir "$XDG_RUNTIME_DIR"
-     chmod 0700 "$XDG_RUNTIME_DIR"
+        mkdir "$XDG_RUNTIME_DIR"
+        chmod 0700 "$XDG_RUNTIME_DIR"
     fi
 fi
 
+export LIBVA_DRIVER_NAME=i965
+export LIBVA_DRIVERS_PATH=/usr/local/lib/dri
+
+# Need more research
+export LC_ALL=en_GB.UTF-8
+export TERM=xterm-256color
