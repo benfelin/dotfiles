@@ -184,6 +184,7 @@ alias jcu='journalctl --user'
 # misc
 #------------------------
 
+alias vi=vim
 alias aliaz='unalias -a && source ~/.bash_aliases'
 alias tmpcd='cd `mktemp -d`'
 alias quota='quota -s'
