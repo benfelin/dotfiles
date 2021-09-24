@@ -1,15 +1,118 @@
-severity  = 3
+severity  = 1
 
-verbose   = %f: [%p] %m at line %l, column %c (Severity %s).\n%d\n
+verbose = [%p] %m at %f line %l, near '%r'\n
+#verbose   = \n%f\n[%p] %m at line %l, column %c. (Severity %s)\n\n%d\n
 
 color                  = 1
-color-severity-highest = bold white on_red
-color-severity-high    = bold white on_yellow
-color-severity-medium  = bold yellow
-color-severity-low     = bold cyan
+color-severity-highest = red
+color-severity-high    = magenta
+color-severity-medium  = yellow
+color-severity-low     = green
+color-severity-lowest  = blue
 
-# => disabled 5
-# => disabled 4
-# => disabled 3
-# => disabled 2
-# => disabled 1
+# We'll enforce dependencies in other ways, rather than magically putting
+# a $VERSION variable in modules.
+[-Modules::RequireVersionVar]
+
+# Builders are pulled in from Moose, but perlcritic can't possibly begin
+# to fathom that out. So let these things slide.
+[Subroutines::ProhibitUnusedPrivateSubroutines]
+private_name_regex = _(?!build)\w+
+skip_when_using = Moose
+
+# Sometimes you need an if ... elsif ... elsif etc. chain; allow more,
+# and make it less important.
+[ControlStructures::ProhibitCascadingIfElse]
+max_elsif = 5
+severity = cruel
+
+# This flatly doesn't work - it ignores automatic closing of filehandles
+# when they go out of scope, but I've seen it complain about an open statement
+# when there was a close on the very next line.
+[-InputOutput::RequireBriefOpen]
+
+# This rule is also useless, as it doesn't know about named captures.
+[-RegularExpressions::ProhibitUnusedCapture]
+
+# Named captures also break this one.
+[-Variables::ProhibitPunctuationVars]
+
+# There's muscle memory of always adding /xms to a regex, and then there's
+# typing for the hell of it.
+[-RegularExpressions::RequireDotMatchAnything]
+[-RegularExpressions::RequireLineBoundaryMatching]
+
+# Unless blocks are fine, possibly.
+[-ControlStructures::ProhibitUnlessBlocks]
+
+# Let a human decide whether range comparisons in an unless block are fine
+[-ControlStructures::ProhibitNegativeExpressionsInUnlessAndUntilConditions]
+
+# Likewise postfix if et al
+ [-ControlStructures::ProhibitPostfixControls]
+
+# Let use warnings warn about reusing a variable at the same lexical scope;
+# this rule warns about reusing at a different scope, which is potentially
+# fine.
+ [-Variables::ProhibitReusedNames]
+
+# Yes, require /x but perhaps not for really trivial regexen
+# or stuff that looks for a constant
+ [RegularExpressions::RequireExtendedFormatting]
+ minimum_regex_length_to_complain_about = 100
+
+# Double-sigil dereferences are almost certainly fine. The examples of bad
+# stuff in PBP are straw men.
+ [-References::ProhibitDoubleSigils]
+
+# This is overridden by the better rule RequireCheckedSyscalls
+ [-InputOutput::RequireCheckedClose]
+
+# Damian Conway's insistence that the literal '' or "" in a proper
+# monospaced font is difficult to read is frankly bizarre.
+ [-ValuesAndExpressions::ProhibitEmptyQuotes]
+ [-ValuesAndExpressions::ProhibitNoisyQuotes]
+
+# Putting braces around file handle objects is reasonable.
+# Putting braces around bareword file handles like STDERR is frankly daft.
+ [-InputOutput::RequireBracedFileHandleWithPrint]
+
+# This is overridden by the better rule RequireCheckedSyscalls
+ [-InputOutput::RequireCheckedClose]
+
+ [RegularExpressions::ProhibitComplexRegexes]
+ max_characters = 100
+
+############################
+# NEED FURTHER CONSIDERATIONS
+#############################
+
+# Judgement call (default is 20)
+ [Modules::ProhibitExcessMainComplexity]
+ max_mccabe = 30
+ [Subroutines::ProhibitExcessComplexity]
+ max_mccabe = 40
+
+# printf misery
+ [TestingAndDebugging::ProhibitNoWarnings]
+ allow = uninitialized
+
+# Some CPAN modules do not care about this one
+# Why should I?
+ [-Objects::ProhibitIndirectSyntax]
+
+# We throw structured exceptions all the time. Carp would be a bad idea
+# here.
+#[-ErrorHandling::RequireCarping]
+
+# Tacit return values, or situations where it doesn't matter, are fine.
+#[-Subroutines::RequireFinalReturn]
+
+# Far more numbers than 0, 1 and 2 are acceptable, but I can't be bothered
+# configuring them. So, shut up. Code review will deal with this.
+#[-ValuesAndExpressions::ProhibitMagicNumbers]
+
+# Perlcritic seems to think that stringy eval is wrong because people use it
+# instead of block eval. I wonder how they think people are going to
+# execute arbitrary code taken from a string otherwise?
+#[-BuiltinFunctions::ProhibitStringyEval]
