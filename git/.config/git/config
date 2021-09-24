@@ -24,7 +24,7 @@
 ; commit ornaments
 ;;;;;;;;;;;;;;;;;;
 [commit]
-    template = ~/.local/git/gitmessage
+    template = ~/.config/git/gitmessage
 
 ;;;;;;;;;;
 ; git help
