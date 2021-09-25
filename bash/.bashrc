@@ -56,11 +56,18 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# Git prompt
- GIT_PS1_SHOWDIRTYSTATE=1
- GIT_PS1_SHOWSTASHSTATE=1
- GIT_PS1_SHOWUNTRACKEDFILES=1
- GIT_PS1_SHOWUPSTREAM="auto"
+# Git autocompletion and prompt
+if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+    . /usr/local/etc/bash_completion.d/git-completion.bash
+fi
+
+if [ -f /usr/local/share/git-core/contrib/completion/git-prompt.sh ]; then
+    . /usr/local/share/git-core/contrib/completion/git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUNTRACKEDFILES=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+fi
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[0;33m\]$(__git_ps1 " (%s)")\[\033[00m\]\n\$ '
