@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 severity  = 1
 
 verbose = [%p] %m at %f line %l, near '%r'\n
@@ -116,3 +117,5 @@ severity = cruel
 # instead of block eval. I wonder how they think people are going to
 # execute arbitrary code taken from a string otherwise?
 #[-BuiltinFunctions::ProhibitStringyEval]
+=======
+>>>>>>> Stashed changes
