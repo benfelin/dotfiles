@@ -1,20 +1,32 @@
 #/bin/sh
 
+export PATH="${HOME}/.local/bin:${PATH}"
+
+COMPOSITOR=picom
+BATT=""
 # TODO laptop/desktop? Linux/OpenBSD/FreeBSD? -> uname
-# battery status
-#while true
-#do
-#    if ([ $BATT -le 5 ] && [ $STATUS == 'Discharging' ]); then
-#        xbacklight -set 0 && sleep1
-#        xbacklight -set 100
-#    fi
-#    sleep 10s
-#done &
-# $HOME/.local/bin/battery-status.sh &
+OS=$(uname)
+case $OS in
+Linux)
+    COMPOSITOR=compton
+#is it a laptop? && get remainig battery in $BATT
+    ;;
+FreeBSD)
+#  is it a laptop? && get remainig battery in $BATT
+    BATT=" | $(apm -l)"
+    ;;
+OpenBSD)
+#  is it a laptop? && get remainig battery in $BATT
+    ;;
+*)
+    ;;
+esac
+
+$HOME/.local/bin/battery-status.sh &
 
 # Statusbar loop
 while true; do
-   xsetroot -name "$( date +"%c" )"
+   xsetroot -name "$( date +"%c" )$( echo $BATT)"
    sleep 60
 done &
 
@@ -24,6 +36,7 @@ xsetroot -solid gray44 &
 
 sxhkd &
 $HOME/.local/bin/mutx &
-compton --backend glx --paint-on-overlay --refresh-rate 60 --glx-no-stencil --glx-no-rebind-pixmap --glx-swap-method -1 &
+
+eval $COMPOSITOR -b &
 
 exec dwm
