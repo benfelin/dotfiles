@@ -15,7 +15,7 @@
 # Statusbar loop
 while true; do
    xsetroot -name "$( date +"%c" )"
-   sleep 1m    # Update time every minute
+   sleep 60
 done &
 
 xrdb $HOME/.Xdefaults &
