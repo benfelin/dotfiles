@@ -1,8 +1,23 @@
-# Current issue
+# Current issues
 
-- tmux-reset.sh : GNU sed v. BSD sed
-- What's in PATH? : dmenu/sxhkd
-- battery indicator : integrate that to each OS-dedicated branch
+- tmux-reset.sh : GNU v. BSD
+    - tmux-reset.sh (sed)
+    - .xsession (sleep)
+
+- What's in PATH?
+    - dmenu (.xinitrc)
+    - sxhkd (?)
+
+- battery indicator : integrate that to each OS-dedicated branch -> how to
+spot desktop/laptop? (uname - ? - power management)
+    - linux: ?
+    - freebsd: apm -l (remaining battery percentage)
+    - openbsd: ? 
+
+- packages' discrepancy
+    - linux: compton
+    - freebsd: picom
+    - openbsd: picom
 
 # Some rules
 
