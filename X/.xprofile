@@ -13,7 +13,7 @@ Linux)
     ;;
 FreeBSD)
 #  is it a laptop? && get remainig battery in $BATT
-    BATT=" | $(apm -l)"
+    BATT=" | $(apm -l)%"
     ;;
 OpenBSD)
 #  is it a laptop? && get remainig battery in $BATT
@@ -22,11 +22,11 @@ OpenBSD)
     ;;
 esac
 
-$HOME/.local/bin/battery-status.sh &
+battery-status.sh &
 
 # Statusbar loop
 while true; do
-   xsetroot -name "$( date +"%c" )$( echo $BATT)"
+   xsetroot -name "$( date +"%c" ) $( echo $BATT)"
    sleep 60
 done &
 
