@@ -1,15 +1,13 @@
 # Work In Progress
 
-- battery indicator : laptop? -> power management)
+- battery indicator : laptop? -> power management
     - linux: ?
     - freebsd: apm -l (remaining battery percentage)
     - openbsd: ? 
 
 # Current issues
 
-- tmux-reset.sh : GNU v. BSD
-    - tmux-reset.sh (sed)
-    - .xsession (sleep)
+- tmux-reset.sh : GNU v. BSD sed
 
 # Some rules
 
@@ -18,5 +16,4 @@ then use '#!/usr/bin/env bash'
 
 # OS branch
 
-- git prompt and auto complete are installed (or not eg. openbsd) differently
-for each OS
+- git: prompt and auto-complete are installed (or not eg. openbsd) differently for each OS
