@@ -17,7 +17,7 @@ backup .bashrc .bash_aliases .bash_functions .profile .bash_logout; stow bash
 backup .tmux.conf;                                                  stow tmux
                                                                     stow git
                                                                     stow perl
-
+backup .vimrc
 stow vim
 vim +BundleInstall +qall
 test -d $HOME/.vim/colors || ln -s $HOME/.vim/bundle/vim-colorschemes/colors $HOME/.vim/colors
