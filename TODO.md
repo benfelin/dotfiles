@@ -1,13 +1,8 @@
 # Work In Progress
 
-- battery indicator : laptop? -> power management
-    - linux: ?
-    - freebsd: apm -l (remaining battery percentage)
-    - openbsd: ? 
-
-# Current issues
-
 - tmux-reset.sh : GNU v. BSD sed
+
+# Last issues
 
 # Some rules
 
