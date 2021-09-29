@@ -157,30 +157,6 @@ alias moew='more'
 alias kk='ll'
 
 #------------------------
-# systemD
-#------------------------
-
-alias status="systemctl status"
-alias senable="systemctl enable"
-alias disable="systemctl disable"
-alias list="systemctl list-unit-files"
-alias reload="systemctl reload"
-
-alias sc='systemctl'
-alias scu='systemctl --user'
-alias scdr='systemctl daemon-reload'
-alias scdru='systemctl --user daemon-reload'
-alias scr='systemctl restart'
-alias scru='systemctl --user restart'
-alias sce='systemctl stop'
-alias sceu='systemctl --user stop'
-alias scs='systemctl start'
-alias scsu='systemctl --user start'
-
-alias jc='journalctl'
-alias jcu='journalctl --user'
-
-#------------------------
 # misc
 #------------------------
 
