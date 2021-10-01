@@ -3,19 +3,15 @@
 export PATH="${HOME}/.local/bin:${PATH}"
 
 COMPOSITOR=picom
-BATT=""
 OS=$(uname)
 
 case $OS in
 Linux)
     COMPOSITOR=compton
-    acpi -l && BATT="$(acpi -l | grep "Battery 0" | awk '{ print $4}')"
+    acpi -b && cmd=" | $(acpi -b | grep "Battery 0" | awk '{ print $4}')"
     ;;
-FreeBSD)
-    test `apm -l` = "0" || BATT="$(apm -l)%"
-    ;;
-OpenBSD)
-    test `apm -l` = "0" || BATT="$(apm -l)%"
+*BSD)
+    test `apm -l` = "0" || cmd=" | $(apm -l)%"
     ;;
 *)
     ;;
@@ -25,8 +21,9 @@ battery-status.sh &
 
 # Statusbar loop
 while true; do
-   xsetroot -name "$(date +"%c") | $(echo $BATT)"
-   sleep 60
+    BATT=$(eval $cmd)
+    xsetroot -name "$(date +"%c")$(echo $BATT)"
+    sleep 60
 done &
 
 xrdb $HOME/.Xdefaults &
