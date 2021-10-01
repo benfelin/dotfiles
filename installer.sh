@@ -2,6 +2,10 @@
 
 command -v stow >/dev/null 2>&1 || { echo "Install GNU Stow first"; exit 1; }
 
+for i in bash tmux git perl vim; do
+        command -v $i >/dev/null || echo "Please install $i"
+done
+
 backup () {
 	for FILE in "$@"
     do
