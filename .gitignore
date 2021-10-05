@@ -1,3 +1,4 @@
+gitk
 vim/.vim/bundle/*
 !vim/.vim/bundle/Vundle.vim
 tmux/.tmux/plugins/*
