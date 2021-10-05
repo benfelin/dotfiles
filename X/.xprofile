@@ -3,15 +3,27 @@
 export PATH="${HOME}/.local/bin:${PATH}"
 
 COMPOSITOR=picom
+MUSIC=""
 OS=$(uname)
 
 case $OS in
 Linux)
     COMPOSITOR=compton
-    acpi -b && cmd=" | $(acpi -b | grep "Battery 0" | awk '{ print $4}')"
+    snd="amixer get Master | tail -1 | grep -Eo "[0-9]*%""
+    #unit="amixer get Headphone | tail -1 | awk '{print \$4}' | grep -Eo "[onf]{2,3}""
+    acpi -b && batt="acpi -b | grep "Battery 0" | awk '{ print \$4}'"
     ;;
-*BSD)
-    test `apm -l` = "0" || cmd=" | $(apm -l)%"
+FreeBSD)
+    MUSIC=musicpd
+    snd="mixer | head -1 | rev | awk '{print \$1}' | rev"
+    #unit="sysctl hw.snd.default_unit | awk '{print \$2}'"
+    test `apm -l` = "0" || batt="apm -l"
+    ;;
+OpenBSD)
+    MUSIC=mpd
+    snd=""
+    #unit=""
+    test `apm -l` = "0" || batt="apm -l"
     ;;
 *)
     ;;
@@ -21,17 +33,20 @@ battery-status.sh &
 
 # Statusbar loop
 while true; do
-    BATT=$(eval $cmd)
-    xsetroot -name "$(date +"%c")$(echo $BATT)"
-    sleep 60
+    status="$(date +"%c")"
+    test "$snd" && status="$status | $(eval $snd)"
+    test "$batt" && status="$status | $(eval $batt)%"
+    xsetroot -name "$status"
+    sleep 10
 done &
 
-xrdb $HOME/.Xdefaults &
-xscreensaver -no-splash &
-xsetroot -solid gray44 &
+mutx &
+test "$MUSIC" -a ! -e $HOME/.config/mpd/pid && $MUSIC $HOME/.config/mpd/${MUSIC}.conf &
 
+xrdb $HOME/.Xdefaults &
+#xscreensaver -no-splash &
+xsetroot -solid gray44 &
 sxhkd &
-$HOME/.local/bin/mutx &
 
 eval $COMPOSITOR -b &
 
