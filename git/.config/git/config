@@ -157,7 +157,7 @@
 	submoduleSummary = true
 
 [init]
-	templatedir = /home/ben/.config/git/templates
+	templatedir = $HOME/.config/git/templates
 [user]
 	email = 4267892+benfelin@users.noreply.github.com
 	name = bbb

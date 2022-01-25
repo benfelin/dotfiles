@@ -187,7 +187,7 @@ alias term='echo $TERM": "`tput colors`" colors ("`tput cols`"x"`tput lines`")"'
 alias palette='for i in {0..255} ; do printf "\x1b[38;5;${i}mcolour${i} "; done'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias myip="curl http://ipecho.net/plain; echo"
-alias config='/usr/local/bin/git --git-dir=/home/ben/.cfg/ --work-tree=/home/ben'
+alias config='/usr/local/bin/git --git-dir=${HOME}/.cfg/ --work-tree=${HOME}'
 
 #-------------------------------------------------------------
 # perl one-liner
@@ -222,6 +222,6 @@ alias calc="perl -ple '\$_=eval'"
 #-------------------------------------------------------------
 #-------------------------------------------------------------
 
-if [ -f $HOME/.bash_aliases-local ]; then
-     . $HOME/.bash_aliases-local
+if [ -f ${HOME}/.bash_aliases-local ]; then
+     . ${HOME}/.bash_aliases-local
 fi
