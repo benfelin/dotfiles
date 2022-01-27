@@ -41,7 +41,7 @@ while true; do
 done &
 
 mutx &
-test "$MUSIC" -a ! -e $HOME/.config/mpd/pid && $MUSIC $HOME/.config/mpd/${MUSIC}.conf &
+kill -s 0 `pgrep $MUSIC`|| $MUSIC $HOME/.config/mpd/${MUSIC}.conf &
 
 xrdb $HOME/.Xdefaults &
 #xscreensaver -no-splash &
