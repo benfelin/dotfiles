@@ -4,3 +4,15 @@
 [submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "suckless/dwm"]
+	path = suckless/dwm
+	url = https://github.com/benfelin/dwm
+[submodule "suckless/st"]
+	path = suckless/st
+	url = https://github.com/benfelin/st
+[submodule "suckless/dmenu"]
+	path = suckless/dmenu
+	url = https://github.com/benfelin/dmenu
+[submodule "suckless/tabbed"]
+	path = suckless/tabbed
+	url = https://github.com/benfelin/tabbed
