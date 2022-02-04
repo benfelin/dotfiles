@@ -24,6 +24,7 @@ git submodule update --init --recursive
 backup .xinitrc .xsession .xprofile .Xdefaults .Xresources;         stow X
 backup .bashrc .bash_aliases .bash_functions .profile .bash_logout; stow bash
 backup .tmux.conf;                                                  stow tmux
+backup .screenrc;                                                   stow --dotfiles screen
                                                                     stow git
                                                                     stow perl
 backup .vimrc;                                                      stow vim
