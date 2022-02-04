@@ -21,12 +21,12 @@ git submodule add https://github.com/VundleVim/Vundle.vim.git vim/.vim/bundle
 git submodule add https://github.com/tmux-plugins/tpm tmux/.tmux/plugins
 git submodule update --init --recursive
 
-backup .xinitrc .xsession .xprofile .Xdefaults .Xresources;         stow X
-backup .bashrc .bash_aliases .bash_functions .profile .bash_logout; stow bash
-backup .tmux.conf;                                                  stow tmux
+backup .xinitrc .xsession .xprofile .Xdefaults .Xresources;         stow --dotfiles X
+backup .bashrc .bash_aliases .bash_functions .profile .bash_logout; stow --dotfiles bash
+backup .tmux.conf;                                                  stow --dotfiles tmux
 backup .screenrc;                                                   stow --dotfiles screen
                                                                     stow git
-                                                                    stow perl
-backup .vimrc;                                                      stow vim
+                                                                    stow --dotfiles perl
+backup .vimrc;                                                      stow --dotfiles vim
 vim +BundleInstall +qall
 test -d $HOME/.vim/colors || ln -s $HOME/.vim/bundle/vim-colorschemes/colors $HOME/.vim/colors
