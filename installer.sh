@@ -13,12 +13,6 @@ backup () {
     done
 }
 
-for i in dwm st dmenu tabbed
-do
-    git submodule add https://github.com/benfelin/$i suckless/$i
-done
-git submodule add https://github.com/VundleVim/Vundle.vim.git vim/.vim/bundle
-git submodule add https://github.com/tmux-plugins/tpm tmux/.tmux/plugins
 git submodule update --init --recursive
 
 backup .xinitrc .xsession .xprofile .Xdefaults .Xresources;         stow --dotfiles X
