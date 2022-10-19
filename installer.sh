@@ -16,12 +16,11 @@ backup () {
 git submodule init
 git submodule update
 
-backup .xinitrc .xsession .xprofile .Xdefaults .Xresources;         stow X
-backup .bashrc .bash_aliases .bash_functions .profile .bash_logout; stow bash
-backup .tmux.conf;                                                  stow tmux
-                                                                    stow git
-                                                                    stow perl
-backup .vimrc
-stow vim
+backup .Xdefaults .Xresources;                                      stow --dotfiles              X
+backup .bashrc .bash_aliases .bash_functions .profile .bash_logout; stow --dotfiles              bash
+backup .tmux.conf;                                                  stow --dotfiles --no-folding tmux
+                                                                    stow --dotfiles --no-folding git
+                                                                    stow --dotfiles              perl
+backup .vimrc;                                                      stow --dotfiles --no-folding vim
 vim +BundleInstall +qall
 test -d $HOME/.vim/colors || ln -s $HOME/.vim/bundle/vim-colorschemes/colors $HOME/.vim/colors
