@@ -134,7 +134,7 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
 fi
 
 export LIBVA_DRIVER_NAME=i965
-export LIBVA_DRIVERS_PATH=/usr/local/lib/dri
+export LIBVA_DRIVERS_PATH=/usr/lib/x86_64-linux-gnu/dri/
 
 # Need more research
 export LC_ALL=en_GB.UTF-8
