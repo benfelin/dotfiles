@@ -1,4 +1,4 @@
-# dotfiles
+# dotfiles with GNU Stow
 
 With recent Ubuntu releases it is assumed:
 
@@ -11,6 +11,12 @@ Required packages:
 - [GNU Stow](https://www.gnu.org/software/stow/manual/stow.html)
 - [Perltidy](http://perltidy.sourceforge.net/perltidy.html)
 - [Perlcritic](https://metacpan.org/pod/perlcritic)
+
+# About GNU Stow
+
+GNU Stow is a symlink farm manager which takes distinct packages of software and/or data located in separate directories on the filesystem, and makes them appear to be installed in the same place. By default, GNU Stow will symlink top level folders into home directory. That’s ok for most applications, but it does cause some trouble when the application tries to write into the config folders. For example, when VIM writes temporary files to the ~/.vim folder, they will contaminate our git repository. The solution to this is using the no-folding option. No-folding (--no-folding) will create all directory with mkdir and only symlink the config files. This is the stow command I use to to map configs.\
+
+[Dotfiles option doesn't work with directories #33](https://github.com/aspiers/stow/issues/33)
 
 # Notes about X 
 
@@ -45,14 +51,15 @@ lightdm, or sddm) when a user logs in. However, with modern DMs the
 user can usually choose a window manager to start, and the DM may or may not
 run the .xsession file.
 
-[Running X](https://tldp.org/HOWTO/XWindow-User-HOWTO/runningx.html)
+[Running X](https://tldp.org/HOWTO/XWindow-User-HOWTO/runningx.html)\
 [Blog](https://venam.nixers.net/blog/unix/2020/01/27/xconfig.html)
 
 - ~/.Xdefaults vs ~/.Xresource
 
 *Xlib Programming Manual P.441*
 
-`Prior to X11R2, X resource settings were read from .Xdefaults file
+```
+Prior to X11R2, X resource settings were read from .Xdefaults file
 in users home directory and optionally on whatever machine the X client
 was running on, so multiple files was hard to maintain.
 
@@ -61,9 +68,9 @@ in .Xresources into the XA_RESOURCE_MANAGER property of the root window
 on the current X server, so all clients connected to the same server has
 access to them. If the user hasn't called xrdb to set the property, then
 .Xdefaults is read.
-`
+```
 
-[More X configuration](https://tldp.org/HOWTO/XWindow-User-HOWTO/moreconfig.html)
+[More X configuration](https://tldp.org/HOWTO/XWindow-User-HOWTO/moreconfig.html)\
 [Forum](https://superuser.com/questions/243914/what-is-the-difference-between-xresources-and-xdefaults#243916)
 
 # Resetting default Tmux key bindings?
@@ -71,6 +78,5 @@ access to them. If the user hasn't called xrdb to set the property, then
 With multiple sessions and servers (-L option) it is possible to bork
 keybindings beyond repair.
 
-[github](https://github.com/tmux/tmux/issues/729)
+[github](https://github.com/tmux/tmux/issues/729)\
 [Forum](https://unix.stackexchange.com/questions/57641/reload-of-tmux-config-not-unbinding-keys-bind-key-is-cumulative/255343#255343)
-[tmux.reset.conf]
