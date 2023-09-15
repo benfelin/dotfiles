@@ -10,3 +10,12 @@
 [submodule "suckless/tabbed"]
 	path = suckless/tabbed
 	url = https://github.com/benfelin/tabbed
+[submodule "plugins/vim-colorschemes"]
+	path = plugins/vim-colorschemes
+	url = https://github.com/flazz/vim-colorschemes.git
+[submodule "plugins/Vundle.vim"]
+	path = plugins/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
+[submodule "plugins/tpm"]
+	path = plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

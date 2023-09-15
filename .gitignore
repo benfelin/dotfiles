@@ -1,7 +1,0 @@
-gitk
-vim/.vim/bundle/*
-!vim/.vim/bundle/Vundle.vim
-tmux/.tmux/plugins/*
-!tmux/.tmux/plugins/tpm
-tmux/.tmux/resurrect/
-vim/.vim/colors
