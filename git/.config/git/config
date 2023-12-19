@@ -13,6 +13,7 @@
     editor = vim
     pager = less
     autocrlf = input
+	excludesfile = /Users/bf5/.gitignore_global
 
 ;;;;;;;;;;;;;;;;
 ; identification
@@ -159,5 +160,16 @@
 [init]
 	templatedir = $HOME/.config/git/templates
 [user]
-	email = 4267892+benfelin@users.noreply.github.com
-	name = bbb
+	email = bf5@sanger.ac.uk
+	name = Benoit Felix
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Users/bf5/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
