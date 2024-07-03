@@ -70,5 +70,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-#git bisect run 
+#git bisect run
 bisect.sh

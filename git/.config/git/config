@@ -4,7 +4,7 @@
 ; user identification
 ;;;;;;;;;;;;;;;;;;;;;
 
-; per repository 
+; per repository
 
 ;;;;;;;;;;;;;;;;
 ; core variables
@@ -41,7 +41,7 @@
     s = status
 
     g = grep -Ii
-    
+
     lf = ls-files
     lc = ls-tree
     dump = "!f() { git cat-file -t $1; git cat-file -s $1; git cat-file -p $1; }; f"
@@ -55,7 +55,7 @@
     ls = stash list --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cr) %C(bold blue)<%an>%Creset'
     sa = stash apply
     ss = stash save
-    
+
     b = branch
     bb = show-branch --all
     ba = branch -av
@@ -164,7 +164,7 @@
 	name = Benoit Felix
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Users/bf5/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true

@@ -204,7 +204,7 @@ alias Perl_iop=' perl -00 -wpl '    # O/I promessing with print
 alias Perl_f=' perl -00 -wnla '     # field processing
 alias Perl_fp=' perl -00 -wpla '    # field processing with print
 
-# w=warnings 
+# w=warnings
 # l=automatic line-ending processing: chomps $/ and  assigns "$\"
 # n=processing input
 # p=processing input with auto print

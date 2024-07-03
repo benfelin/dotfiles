@@ -187,4 +187,3 @@ exclude_functions = print close sleep
 # Bump up the number of method calls allowed.
 [ValuesAndExpressions::ProhibitLongChainsOfMethodCalls]
 max_chain_length = 5
-

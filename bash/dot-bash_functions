@@ -16,7 +16,7 @@ export -f prepend_path
 
 #-------------------------------------------------------------
 
-man2pdf() 
+man2pdf()
 {
     if [[ -z $1 ]]; then
         echo "USAGE: man2pdf [manpage]"
@@ -39,7 +39,7 @@ export -f man2pdf
 
 #-------------------------------------------------------------
 
-extract () 
+extract ()
 {
     if [ -f $1 ] ; then
         case $1 in
@@ -65,32 +65,32 @@ export -f extract
 
 #-------------------------------------------------------------
 
-mkcd () 
-{ 
-    mkdir -p "$@" && eval cd "\"\$$#\"" 
+mkcd ()
+{
+    mkdir -p "$@" && eval cd "\"\$$#\""
 }
 export -f mkcd
 
 #-------------------------------------------------------------
 
-wiki () 
-{ 
-    dig +short txt $1.wp.dg.cx 
+wiki ()
+{
+    dig +short txt $1.wp.dg.cx
 }
 export -f wiki
 
 #-------------------------------------------------------------
 
-treee () 
+treee ()
 {
     if [ "$1" != "" ]; then
         CWD="$1"
-    else 
+    else
         CWD="."
     fi
-    
+
     ls -R $CWD | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
-    
+
     if [ `ls -F -1 | grep "/" | wc -l` = 0 ]; then
         echo "   -> no sub-directories"
     fi
@@ -99,14 +99,14 @@ export -f treee
 
 #-------------------------------------------------------------
 
-hdate () 
-{ 
-    if [[ "$1" > 2147483647 ]]; then 
-        echo "Larger than 32-bit signed integer" 
-    else 
+hdate ()
+{
+    if [[ "$1" > 2147483647 ]]; then
+        echo "Larger than 32-bit signed integer"
+    else
         echo $(date -d @$1 +%c)
     fi
-}   
+}
 export -f hdate
 
 #-------------------------------------------------------------
@@ -119,21 +119,21 @@ export -f e2d
 
 #-------------------------------------------------------------
 
-bck () 
-{ 
-    cp $1{,.bck_$(date +%Y-%m-%d_%H-%M)} 
+bck ()
+{
+    cp $1{,.bck_$(date +%Y-%m-%d_%H-%M)}
 }
 export -f bck
 
 #-------------------------------------------------------------
 
-m2h () 
-{ 
+m2h ()
+{
     local S=${1}
     ((h=S/60))
-    ((m=S%60)) 
+    ((m=S%60))
     printf "%dh:%dm\n" $h $m
-}  
+}
 export -f m2h
 
 #-------------------------------------------------------------

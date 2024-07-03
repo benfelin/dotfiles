@@ -12,7 +12,7 @@ Required packages:
 - [Perltidy](http://perltidy.sourceforge.net/perltidy.html)
 - [Perlcritic](https://metacpan.org/pod/perlcritic)
 
-# Notes about X 
+# Notes about X
 
 - ~/.xprofile vs ~/.xsession vs ~/.xinitrc
 
