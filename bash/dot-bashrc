@@ -51,12 +51,12 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Git autocompletion and prompt
-if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-    . /usr/local/etc/bash_completion.d/git-completion.bash
+if [ -f /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash ]; then
+    . /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash
 fi
 
-if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
-    . /usr/local/etc/bash_completion.d/git-prompt.sh
+if [ -f /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh ]; then
+    . /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWSTASHSTATE=1
     GIT_PS1_SHOWUNTRACKEDFILES=1
